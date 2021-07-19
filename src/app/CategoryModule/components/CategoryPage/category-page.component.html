@@ -1,0 +1,20 @@
+<div class="Container">
+  <div class="Panel">
+    <ng-container *ngIf="ShowCategoryTree">
+      <category-component
+        *ngFor="let one of TreeObject"
+        [Elem]="one"
+      ></category-component>
+    </ng-container>
+  </div>
+  <div class="Panel">
+    <div class="ButtonContainer">
+      <button class="button" (click)="NewCategory()" mat-raised-button>
+        Добавить
+      </button>
+      <button class="button" mat-raised-button>Удалить</button>
+      <button class="button" mat-raised-button>Заблокировать</button>
+      <button class="button" mat-raised-button>Скрыть</button>
+    </div>
+  </div>
+</div>

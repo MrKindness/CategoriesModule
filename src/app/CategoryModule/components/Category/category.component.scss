@@ -1,0 +1,22 @@
+.CategoryContainer {
+  display: block;
+
+  .button {
+    margin: 2px;
+    border: 1px black solid;
+    padding: 8px;
+    width: 100px;
+    height: auto;
+  }
+
+  .ChildContainer {
+    margin-left: 40px;
+  }
+
+  // .Image {
+  //   background: url(\src\app\CategoryModule\assets\chevron-down-solid.svg)
+  //     no-repeat top;
+  //   width: 20px;
+  //   height: 20px;
+  // }
+}

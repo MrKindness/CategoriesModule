@@ -1,0 +1,19 @@
+.Container {
+  font-size: 20px;
+  margin: 20px;
+  height: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 5px;
+
+  .Panel {
+    width: 100%;
+    height: auto;
+    background-color: rgb(243, 243, 243);
+
+    .Category {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div class="CategoryContainer">
+  <div class="button">
+    {{ Elem.name.EN }}
+  </div>
+  <div class="ChildContainer">
+    <category-component
+      class="Category"
+      *ngFor="let one of Elem.children"
+      [Elem]="one"
+    ></category-component>
+  </div>
+</div>
