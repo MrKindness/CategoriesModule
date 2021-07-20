@@ -1,8 +1,14 @@
 <div class="CategoryContainer">
-  <div class="button">
-    {{ Elem.name.EN }}
+  <div class="ContentContainer Unselectable" (click)="CategoryClickEvent()">
+    <div class="button">
+      {{ Elem.name.EN }}
+    </div>
+    <div
+      *ngIf="Elem.children.length > 0"
+      [ngClass]="{ ImageUp: ShowSubTree, ImageDown: !ShowSubTree }"
+    ></div>
   </div>
-  <div class="ChildContainer">
+  <div class="ChildContainer" *ngIf="ShowSubTree">
     <category-component
       class="Category"
       *ngFor="let one of Elem.children"

@@ -1,22 +1,51 @@
+%Image {
+  display: inline-block;
+  box-sizing: border-box;
+
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+}
+
+.Unselectable {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 .CategoryContainer {
   display: block;
 
-  .button {
-    margin: 2px;
-    border: 1px black solid;
-    padding: 8px;
-    width: 100px;
-    height: auto;
-  }
-
   .ChildContainer {
-    margin-left: 40px;
+    margin-left: 60px;
   }
 
-  // .Image {
-  //   background: url(\src\app\CategoryModule\assets\chevron-down-solid.svg)
-  //     no-repeat top;
-  //   width: 20px;
-  //   height: 20px;
-  // }
+  .ContentContainer {
+    display: inline-flex;
+    border: 1px black solid;
+    margin: 4px;
+    cursor: pointer;
+
+    .button {
+      display: inline-block;
+      box-sizing: border-box;
+      margin: 5px;
+    }
+
+    .ImageDown {
+      @extend %Image;
+      background: url(\src\app\CategoryModule\assets\chevron-down-solid.svg)
+        no-repeat top;
+    }
+
+    .ImageUp {
+      @extend %Image;
+      background: url(\src\app\CategoryModule\assets\chevron-up-solid.svg)
+        no-repeat top;
+    }
+  }
 }

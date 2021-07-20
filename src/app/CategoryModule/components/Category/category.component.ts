@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CategoryService } from '../../services/CategoryClick.service';
 import { Category } from '../../types/Category';
 @Component({
   selector: 'category-component',
@@ -6,10 +7,16 @@ import { Category } from '../../types/Category';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
+  constructor(private CategoryClick: CategoryService) {}
   @Input()
   Elem!: Category;
-
+  ShowSubTree: boolean = false;
   ngOnInit() {
     console.log(this.Elem);
+  }
+
+  CategoryClickEvent() {
+    this.ShowSubTree = !this.ShowSubTree;
+    this.CategoryClick.ClickEvent.next(this.Elem.id);
   }
 }

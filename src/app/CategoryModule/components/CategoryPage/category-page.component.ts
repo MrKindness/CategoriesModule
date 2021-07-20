@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { WebService } from '../../services/WebService';
 import { map } from 'rxjs/operators';
-import { CategoryComponent } from '../Category/category.component';
 import { Category } from '../../types/Category';
+import { CategoryService } from '../../services/CategoryClick.service';
+import { WebService } from '../../services/Web.service';
 
 @Component({
   selector: 'category-page-component',
@@ -10,9 +10,10 @@ import { Category } from '../../types/Category';
   styleUrls: ['./category-page.component.scss'],
 })
 export class CategoryPageComponent implements OnInit {
-  constructor(private web: WebService) {}
-  CategoryElem = CategoryComponent;
-  ShowCategoryTree = true;
+  constructor(
+    private web: WebService,
+    private CategoryEvent: CategoryService
+  ) {}
   TreeObject: any;
 
   ngOnInit() {
@@ -27,11 +28,15 @@ export class CategoryPageComponent implements OnInit {
         })
       )
       .subscribe();
+
+    this.CategoryEvent.ClickEvent.subscribe({
+      next: (id) => {
+        console.log(id);
+      },
+    });
   }
 
-  NewCategory() {
-    this.ShowCategoryTree = !this.ShowCategoryTree;
-  }
+  CreateCategoryClick() {}
 
   CreateTreeObject(mass: Category[]) {
     function CreateTreeObjectFirst(mass: Category[], parentIndex: number) {
