@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../types/Category';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class WebService {

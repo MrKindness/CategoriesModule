@@ -5,12 +5,22 @@ import { WebService } from './services/Web.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoryComponent } from './components/Category/category.component';
-import { CategoryService } from './services/CategoryClick.service';
+import { CategoryEvent } from './services/CategoryEvent.service';
+import { StoreModule } from '@ngrx/store';
+import { CategoriesReducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { CategoriesEffects } from './store/category.effects';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    MatButtonModule,
+    StoreModule.forFeature('Categories', CategoriesReducers),
+    EffectsModule.forFeature([CategoriesEffects]),
+  ],
   declarations: [CategoryPageComponent, CategoryComponent],
-  providers: [WebService, CategoryService],
+  providers: [WebService, CategoryEvent],
   exports: [CategoryPageComponent],
 })
 export class CategoryModule {}

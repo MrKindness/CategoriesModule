@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Category } from '../../types/Category';
-import { CategoryService } from '../../services/CategoryClick.service';
+import { CategoryEvent } from '../../services/CategoryEvent.service';
 import { WebService } from '../../services/Web.service';
+import { select, Store } from '@ngrx/store';
+import { CategoriesListSelector } from '../../store/category.selectors';
+import { CategoriesPageOpenedAction } from '../../store/category.actions';
 
 @Component({
   selector: 'category-page-component',
@@ -10,30 +13,17 @@ import { WebService } from '../../services/Web.service';
   styleUrls: ['./category-page.component.scss'],
 })
 export class CategoryPageComponent implements OnInit {
-  constructor(
-    private web: WebService,
-    private CategoryEvent: CategoryService
-  ) {}
+  constructor(private store: Store, private CategoryEvent: CategoryEvent) {}
   TreeObject: any;
 
   ngOnInit() {
-    this.web
-      .getCategories()
-      .pipe(
-        map((response) => {
-          (response as Category[]).map((elem) => {
-            elem.children = [];
-          });
-          this.TreeObject = this.CreateTreeObject(response as Category[]);
-        })
-      )
-      .subscribe();
-
+    this.store.pipe(select(CategoriesListSelector));
     this.CategoryEvent.ClickEvent.subscribe({
-      next: (id) => {
-        console.log(id);
+      next: (ClickElem) => {
+        console.log(ClickElem);
       },
     });
+    this.store.dispatch(CategoriesPageOpenedAction());
   }
 
   CreateCategoryClick() {}
