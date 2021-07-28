@@ -7,16 +7,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { CategoryComponent } from './components/Category/category.component';
 import { CategoryEvent } from './services/CategoryEvent.service';
 import { StoreModule } from '@ngrx/store';
-import { CategoriesReducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from './store/category.effects';
+import { CategoriesReducer } from './store/category.reducers';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     MatButtonModule,
-    StoreModule.forFeature('Categories', CategoriesReducers),
+    StoreModule.forFeature('Categories', CategoriesReducer),
     EffectsModule.forFeature([CategoriesEffects]),
   ],
   declarations: [CategoryPageComponent, CategoryComponent],

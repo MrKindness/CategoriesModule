@@ -1,20 +1,52 @@
 <div class="Container">
   <div class="Panel">
-    <ng-container>
-      <category-component
-        *ngFor="let one of TreeObject"
-        [Elem]="one"
-      ></category-component>
-    </ng-container>
+    <category-component
+      *ngFor="let one of TreeObject"
+      [Elem]="one"
+    ></category-component>
   </div>
   <div class="Panel">
-    <div class="ButtonContainer">
-      <button class="button" (click)="CreateCategoryClick()" mat-raised-button>
-        Добавить
-      </button>
-      <button class="button" mat-raised-button>Удалить</button>
-      <button class="button" mat-raised-button>Заблокировать</button>
-      <button class="button" mat-raised-button>Скрыть</button>
+    <div class="CategoryContainer" *ngIf="Elem !== undefined">
+      <div class="NameContainer">
+        <div class="Name">{{ Elem.categoryServer.name.EN }}</div>
+        <div class="Icon" (click)="DeactivateCategory()"></div>
+      </div>
+      <div class="ControlContainer">
+        <button class="button" mat-raised-button>Добавить подкатегорию</button>
+        <button class="button" mat-raised-button>Удалить категорию</button>
+        <button
+          *ngIf="Elem.categoryServer.is_visible"
+          class="button"
+          mat-raised-button
+          (click)="VisibilityButtonClick()"
+        >
+          Скрыть
+        </button>
+        <button
+          *ngIf="!Elem.categoryServer.is_visible"
+          class="button"
+          mat-raised-button
+          (click)="VisibilityButtonClick()"
+        >
+          Показать
+        </button>
+        <button
+          *ngIf="Elem.categoryServer.is_blocked"
+          class="button"
+          mat-raised-button
+          (click)="BlockButtonClick()"
+        >
+          Разблокировать
+        </button>
+        <button
+          *ngIf="!Elem.categoryServer.is_blocked"
+          class="button"
+          mat-raised-button
+          (click)="BlockButtonClick()"
+        >
+          Заблокировать
+        </button>
+      </div>
     </div>
   </div>
 </div>

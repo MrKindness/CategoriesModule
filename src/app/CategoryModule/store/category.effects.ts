@@ -4,6 +4,8 @@ import { map, switchMap } from 'rxjs/operators';
 import {
   CategoriesDownloadedAction,
   CategoriesPageOpenedAction,
+  CategoryChangedAction,
+  CategoryChangeRequestAction,
 } from 'src/app/CategoryModule/store/category.actions';
 import { WebService } from '../services/Web.service';
 
@@ -15,7 +17,7 @@ export class CategoriesEffects {
     this.actions$.pipe(
       ofType(CategoriesPageOpenedAction),
       switchMap(() => {
-        return this.WebService.getCategories().pipe(
+        return this.WebService.GetCategories().pipe(
           map((mass: any) => {
             console.log(mass);
             return CategoriesDownloadedAction({ data: mass });
@@ -24,5 +26,24 @@ export class CategoriesEffects {
       })
     )
   );
-  CategoryAddEffect$ = createEffect(() => this.actions$.pipe());
+  CategoryChangedEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CategoryChangeRequestAction),
+      switchMap((CategoryData) => {
+        return this.WebService.UpdateCategory(
+          CategoryData.data.categoryServer
+        ).pipe(
+          map((response) => {
+            console.log(response);
+            return CategoryChangedAction({
+              data: {
+                ShowSubTree: CategoryData.data.ShowSubTree,
+                categoryServer: response,
+              },
+            });
+          })
+        );
+      })
+    )
+  );
 }

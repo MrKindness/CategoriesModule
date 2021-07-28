@@ -1,7 +1,6 @@
 .Container {
   font-size: 20px;
   margin: 20px;
-  height: 100px;
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-column-gap: 5px;
@@ -15,9 +14,21 @@
       margin: 10px;
     }
 
-    .Category {
-      margin-top: 5px;
-      margin-bottom: 5px;
+    .NameContainer {
+      display: flex;
+      .Name {
+        box-sizing: border-box;
+        margin: 5px;
+      }
+      .Icon {
+        box-sizing: border-box;
+
+        height: 20px;
+        width: 20px;
+        margin: 5px;
+        background: url(\src\app\CategoryModule\assets\times-circle-regular.svg)
+          no-repeat top;
+      }
     }
   }
 }

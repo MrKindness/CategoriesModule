@@ -1,4 +1,4 @@
-export interface Category {
+export interface CategoryServer {
   id: number;
   name: { EN: string; RU: string; RO: string };
   //0 - категория, 1 - товар
@@ -6,8 +6,17 @@ export interface Category {
   parent_id: number;
   photo?: string;
   is_blocked: boolean;
-  is_vsible: boolean;
+  is_visible: boolean;
   child_type: number;
   order_number: number;
-  children: Category[];
+}
+
+export interface CategoryStore {
+  categoryServer: CategoryServer;
+  ShowSubTree: boolean;
+}
+
+export interface CategoryPage {
+  categoryStore: CategoryStore;
+  children: CategoryPage[];
 }

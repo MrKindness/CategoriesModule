@@ -9,3 +9,10 @@ export const CategoriesListSelector = createSelector(
     return state.CategoriesList;
   }
 );
+
+export const ActiveCategorySelector = createSelector(
+  featureSelector,
+  (state) => {
+    return state.ActiveCategory;
+  }
+);

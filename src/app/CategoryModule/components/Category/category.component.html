@@ -1,14 +1,28 @@
 <div class="CategoryContainer">
   <div class="ContentContainer Unselectable" (click)="CategoryClickEvent()">
-    <div class="button">
-      {{ Elem.name.EN }}
+    <div class="label">
+      {{ Elem.categoryStore.categoryServer.order_number }}
+    </div>
+    <div class="label">
+      {{ Elem.categoryStore.categoryServer.name.EN }}
     </div>
     <div
+      class="IsUnvisible"
+      *ngIf="!Elem.categoryStore.categoryServer.is_visible"
+    ></div>
+    <div
+      class="IsBlocked"
+      *ngIf="Elem.categoryStore.categoryServer.is_blocked"
+    ></div>
+    <div
       *ngIf="Elem.children.length > 0"
-      [ngClass]="{ ImageUp: ShowSubTree, ImageDown: !ShowSubTree }"
+      [ngClass]="{
+        ImageUp: Elem.categoryStore.ShowSubTree,
+        ImageDown: !Elem.categoryStore.ShowSubTree
+      }"
     ></div>
   </div>
-  <div class="ChildContainer" *ngIf="ShowSubTree">
+  <div class="ChildContainer" *ngIf="Elem.categoryStore.ShowSubTree">
     <category-component
       class="Category"
       *ngFor="let one of Elem.children"

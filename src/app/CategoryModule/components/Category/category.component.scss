@@ -30,7 +30,7 @@
     margin: 4px;
     cursor: pointer;
 
-    .button {
+    .label {
       display: inline-block;
       box-sizing: border-box;
       margin: 5px;
@@ -46,6 +46,18 @@
       @extend %Image;
       background: url(\src\app\CategoryModule\assets\chevron-up-solid.svg)
         no-repeat top;
+    }
+
+    .IsUnvisible {
+      @extend %Image;
+      background: url(\src\app\CategoryModule\assets\eye-slash-solid.svg)
+        no-repeat top;
+    }
+
+    .IsBlocked {
+      @extend %Image;
+      background: url(\src\app\CategoryModule\assets\lock-solid.svg) no-repeat
+        top;
     }
   }
 }

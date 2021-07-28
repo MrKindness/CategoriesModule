@@ -1,15 +1,25 @@
 import { createAction, props } from '@ngrx/store';
-import { Category } from '../types/Category';
+import { CategoryServer, CategoryStore } from '../types/Category';
 
 export const CategoriesPageOpenedAction = createAction(
-  '[CATEGORIES] CategoryPageOpenedAction'
+  '[CATEGORIES] CategoriesPageOpenedAction'
 );
-export const CategoryAddAction = createAction('[CATEGORIES] CategoryAddAction');
 export const CategoriesDownloadedAction = createAction(
   '[CATEGORIES] CategoriesDownloadedAction',
-  props<{ data: Category[] }>()
+  props<{ data: CategoryServer[] }>()
 );
 
-export const NewCategoryDownloadedAction = createAction(
-  '[CATEGORIES] NewCategoryDownloadedAction'
+export const CategoryChangeRequestAction = createAction(
+  '[CATEGORIES] CategoryChangeRequestAction',
+  props<{ data: CategoryStore }>()
+);
+
+export const CategoryChangedAction = createAction(
+  '[CATEGORIES] CategoryChangedAction',
+  props<{ data: CategoryStore }>()
+);
+
+export const CategoryClickedAction = createAction(
+  '[CATEGORIES] CategoryClickedAction',
+  props<{ data: CategoryStore | undefined }>()
 );
