@@ -11,9 +11,27 @@
         <div class="Name">{{ Elem.categoryServer.name.EN }}</div>
         <div class="Icon" (click)="DeactivateCategory()"></div>
       </div>
+
       <div class="ControlContainer">
-        <button class="button" mat-raised-button>Добавить подкатегорию</button>
-        <button class="button" mat-raised-button>Удалить категорию</button>
+        <button
+          class="button"
+          mat-raised-button
+          (click)="ShowForm = !ShowForm"
+          *ngIf="!ShowForm"
+        >
+          Добавить подкатегорию
+        </button>
+        <button
+          class="button"
+          mat-raised-button
+          (click)="ShowForm = !ShowForm"
+          *ngIf="ShowForm"
+        >
+          Отмена
+        </button>
+        <button class="button" mat-raised-button (click)="DelCategory()">
+          Удалить категорию
+        </button>
         <button
           *ngIf="Elem.categoryServer.is_visible"
           class="button"
@@ -46,6 +64,49 @@
         >
           Заблокировать
         </button>
+      </div>
+
+      <div class="FormContainer" *ngIf="ShowForm">
+        <form [formGroup]="form" (ngSubmit)="Submit()">
+          <div class="Control">
+            <div class="NameLabel">Название категории:</div>
+            <div class="LanguageContainer">
+              <div class="LabelSmall">ru</div>
+              <input class="Input" type="text" formControlName="nameRu" />
+              <div class="LabelSmall">ro</div>
+              <input class="Input" type="text" formControlName="nameRo" />
+              <div class="LabelSmall">en</div>
+              <input class="Input" type="text" formControlName="nameEn" />
+            </div>
+          </div>
+          <div class="Control">
+            <div class="Label">Приоритет в списке</div>
+            <input
+              class="NumberInput"
+              type="number"
+              formControlName="order_number"
+            />
+          </div>
+          <div class="Control">
+            <div class="Label">Блокировка</div>
+            <input
+              class="CheckInput"
+              type="checkbox"
+              formControlName="is_blocked"
+            />
+          </div>
+          <div class="Control">
+            <div class="Label">Видимость</div>
+            <input
+              class="CheckInput"
+              type="checkbox"
+              formControlName="is_visible"
+            />
+          </div>
+          <button class="button" type="submit" mat-raised-button>
+            Добавить
+          </button>
+        </form>
       </div>
     </div>
   </div>

@@ -10,10 +10,13 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from './store/category.effects';
 import { CategoriesReducer } from './store/category.reducers';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
     StoreModule.forFeature('Categories', CategoriesReducer),

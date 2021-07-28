@@ -13,6 +13,7 @@ import {
   CategoryClickedAction,
 } from '../../store/category.actions';
 import { Subscription } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'category-page-component',
@@ -24,6 +25,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   TreeObject: any;
   Subscriptions: Subscription[] = [];
   Elem: CategoryStore | undefined;
+  ShowForm: boolean = false;
+  form!: FormGroup;
 
   ngOnInit() {
     this.Subscriptions.push(
@@ -70,6 +73,15 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       })
     );
 
+    this.form = new FormGroup({
+      nameEn: new FormControl(''),
+      nameRu: new FormControl(''),
+      nameRo: new FormControl(''),
+      order_number: new FormControl(0),
+      is_blocked: new FormControl(false),
+      is_visible: new FormControl(true),
+    });
+
     this.store.dispatch(CategoriesPageOpenedAction());
   }
 
@@ -104,6 +116,12 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       })
     );
   }
+
+  Submit() {
+    console.log(this.form);
+  }
+
+  DelCategory() {}
 
   CreateTreeObject(mass: CategoryPage[]) {
     function CreateTreeObjectFirst(mass: CategoryPage[], parentIndex: number) {

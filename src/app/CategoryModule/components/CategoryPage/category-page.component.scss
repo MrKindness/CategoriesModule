@@ -1,13 +1,15 @@
 .Container {
-  font-size: 20px;
+  box-sizing: border-box;
   margin: 20px;
+  font-size: 20px;
+
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-column-gap: 5px;
 
   .Panel {
     width: 100%;
-    height: auto;
+    height: 100%;
     background-color: rgb(243, 243, 243);
 
     .button {
@@ -28,6 +30,32 @@
         margin: 5px;
         background: url(\src\app\CategoryModule\assets\times-circle-regular.svg)
           no-repeat top;
+      }
+    }
+
+    .FormContainer {
+      margin: 20px;
+
+      .LanguageContainer {
+        margin: 0px 0px 0px 20px;
+        .Input {
+          margin-left: 5px;
+        }
+      }
+      .Label {
+        margin-top: 10px;
+        display: inline-block;
+      }
+
+      .NumberInput {
+        width: 40px;
+        margin-left: 5px;
+      }
+
+      .CheckInput {
+        margin: 0px 0px 0px 5px;
+        width: 18px;
+        height: 18px;
       }
     }
   }

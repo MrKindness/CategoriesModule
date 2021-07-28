@@ -1,5 +1,5 @@
 export interface CategoryServer {
-  id: number;
+  id?: number;
   name: { EN: string; RU: string; RO: string };
   //0 - категория, 1 - товар
   type: 0 | 1;
