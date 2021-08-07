@@ -25,4 +25,8 @@ export class WebService {
       .post(this.url, category)
       .pipe(map((data) => data as CategoryServer));
   }
+
+  DelCategory(category: CategoryServer) {
+    return this.http.delete(this.url + '/' + category.id);
+  }
 }

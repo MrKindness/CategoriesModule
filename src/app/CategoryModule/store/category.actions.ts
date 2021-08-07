@@ -33,3 +33,13 @@ export const CategoryAddedAction = createAction(
   '[CATEGORIES] CategoryAddedAction',
   props<{ data: CategoryStore }>()
 );
+
+export const DelCategoryRequest = createAction(
+  '[CATEGORIES] DelCategoryRequest',
+  props<{ data: CategoryServer }>()
+);
+
+export const CategoryDeletedAction = createAction(
+  '[CATEGORIES] CategoryDeletedAction',
+  props<{ data: CategoryServer[] }>()
+);

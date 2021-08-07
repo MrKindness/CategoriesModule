@@ -8,6 +8,8 @@ import {
   CategoryAddRequestAction,
   CategoryChangedAction,
   CategoryChangeRequestAction,
+  CategoryDeletedAction,
+  DelCategoryRequest,
 } from 'src/app/CategoryModule/store/category.actions';
 import { WebService } from '../services/Web.service';
 
@@ -64,4 +66,22 @@ export class CategoriesEffects {
       })
     )
   );
+
+  DelCategoryEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DelCategoryRequest),
+      switchMap((CategoryData) => {
+        return this.WebService.DelCategory(CategoryData.data).pipe(
+          switchMap(() => {
+            return this.WebService.GetCategories().pipe(
+              map((mass: any) => {
+                console.log(mass);
+                return CategoryDeletedAction({ data: mass });
+              })
+            );
+          })
+        );
+      })
+    );
+  });
 }

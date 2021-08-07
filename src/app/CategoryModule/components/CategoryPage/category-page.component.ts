@@ -10,6 +10,7 @@ import {
   CategoriesPageOpenedAction,
   CategoryChangeRequestAction,
   CategoryClickedAction,
+  DelCategoryRequest,
 } from '../../store/category.actions';
 import { Subscription } from 'rxjs';
 
@@ -63,35 +64,11 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     this.store.dispatch(CategoryClickedAction({ data: undefined }));
   }
 
-  VisibilityButtonClick() {
+  DelCategory() {
     this.store.dispatch(
-      CategoryChangeRequestAction({
-        data: {
-          ShowSubTree: this.Elem!.ShowSubTree,
-          categoryServer: {
-            ...this.Elem!.categoryServer,
-            is_visible: !this.Elem!.categoryServer.is_visible,
-          },
-        },
-      })
+      DelCategoryRequest({ data: this.Elem!.categoryServer })
     );
   }
-
-  BlockButtonClick() {
-    this.store.dispatch(
-      CategoryChangeRequestAction({
-        data: {
-          ShowSubTree: this.Elem!.ShowSubTree,
-          categoryServer: {
-            ...this.Elem!.categoryServer,
-            is_blocked: !this.Elem!.categoryServer.is_blocked,
-          },
-        },
-      })
-    );
-  }
-
-  DelCategory() {}
 
   CreateTreeObject(mass: CategoryPage[]) {
     function SortFunction(first: CategoryPage, second: CategoryPage): number {

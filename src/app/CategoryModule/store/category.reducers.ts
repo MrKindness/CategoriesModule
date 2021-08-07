@@ -5,6 +5,7 @@ import {
   CategoryAddedAction,
   CategoryChangedAction,
   CategoryClickedAction,
+  CategoryDeletedAction,
 } from './category.actions';
 
 export interface CategoriesState {
@@ -55,6 +56,21 @@ export const CategoriesReducer = createReducer(
     return {
       ...state,
       CategoriesList: [...state.CategoriesList, newCategory.data],
+    };
+  }),
+  on(CategoryDeletedAction, (state, CategoryMass) => {
+    return {
+      ...state,
+      ActiveCategory: undefined,
+      CategoriesList: state.CategoriesList.filter((elem) => {
+        if (
+          CategoryMass.data.findIndex(
+            (value) => value.id === elem.categoryServer.id
+          ) >= 0
+        )
+          return true;
+        else return false;
+      }),
     };
   })
 );
