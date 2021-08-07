@@ -14,10 +14,12 @@
 
     .button {
       margin: 10px;
+      width: 200px;
     }
 
     .NameContainer {
       display: flex;
+
       .Name {
         box-sizing: border-box;
         margin: 5px;
@@ -34,28 +36,11 @@
     }
 
     .FormContainer {
+      border: 1px solid black;
       margin: 20px;
 
-      .LanguageContainer {
-        margin: 0px 0px 0px 20px;
-        .Input {
-          margin-left: 5px;
-        }
-      }
       .Label {
-        margin-top: 10px;
-        display: inline-block;
-      }
-
-      .NumberInput {
-        width: 40px;
-        margin-left: 5px;
-      }
-
-      .CheckInput {
-        margin: 0px 0px 0px 5px;
-        width: 18px;
-        height: 18px;
+        font-size: 20px;
       }
     }
   }

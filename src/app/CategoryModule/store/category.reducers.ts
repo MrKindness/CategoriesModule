@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { CategoryStore } from '../types/Category';
 import {
   CategoriesDownloadedAction,
+  CategoryAddedAction,
   CategoryChangedAction,
   CategoryClickedAction,
 } from './category.actions';
@@ -48,6 +49,12 @@ export const CategoriesReducer = createReducer(
           : elem
       ),
       ActiveCategory: ClickedElem.data,
+    };
+  }),
+  on(CategoryAddedAction, (state, newCategory) => {
+    return {
+      ...state,
+      CategoriesList: [...state.CategoriesList, newCategory.data],
     };
   })
 );

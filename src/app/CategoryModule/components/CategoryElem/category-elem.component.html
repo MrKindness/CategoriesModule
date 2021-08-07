@@ -23,10 +23,10 @@
     ></div>
   </div>
   <div class="ChildContainer" *ngIf="Elem.categoryStore.ShowSubTree">
-    <category-component
+    <category-elem-component
       class="Category"
       *ngFor="let one of Elem.children"
       [Elem]="one"
-    ></category-component>
+    ></category-elem-component>
   </div>
 </div>

@@ -19,4 +19,10 @@ export class WebService {
       .put(this.url + '/' + category.id, category)
       .pipe(map((data) => data as CategoryServer));
   }
+
+  AddCategory(category: CategoryServer): Observable<CategoryServer> {
+    return this.http
+      .post(this.url, category)
+      .pipe(map((data) => data as CategoryServer));
+  }
 }

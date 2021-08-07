@@ -1,0 +1,127 @@
+<form [formGroup]="form" (ngSubmit)="Submit()">
+  <div class="Control">
+    <div class="Label">Название категории:</div>
+    <div class="LanguageContainer">
+      <div class="RuContainer" *ngIf="{ name: 'nameRu' } as variable">
+        <div class="LabelSmall">ru</div>
+        <input class="TextInput" type="text" formControlName="nameRu" />
+        <div
+          class="Errors"
+          *ngIf="
+            form.get(variable.name)!.invalid && form.get(variable.name)!.touched
+          "
+        >
+          <small *ngIf="form.get(variable.name)?.errors?.required"
+            >Поле не может быть пустым!</small
+          >
+          <small *ngIf="form.get(variable.name)?.errors?.minlength"
+            >Название слишком короткое ({{
+              form.get(variable.name)?.errors?.minlength.actualLength
+            }}
+            /
+            {{ form.get(variable.name)?.errors?.minlength.requiredLength }}
+            символов)!</small
+          >
+          <small *ngIf="form.get(variable.name)?.errors?.maxlength"
+            >Название слишком длинное ({{
+              form.get(variable.name)?.errors?.maxlength.actualLength
+            }}
+            /
+            {{ form.get(variable.name)?.errors?.maxlength.requiredLength }}
+            символов)!</small
+          >
+        </div>
+      </div>
+      <div class="RoContainer" *ngIf="{ name: 'nameRo' } as variable">
+        <div class="LabelSmall">ro</div>
+        <input class="TextInput" type="text" formControlName="nameRo" />
+        <div
+          class="Errors"
+          *ngIf="
+            form.get(variable.name)!.invalid && form.get(variable.name)!.touched
+          "
+        >
+          <small *ngIf="form.get(variable.name)?.errors?.required"
+            >Поле не может быть пустым!</small
+          >
+          <small *ngIf="form.get(variable.name)?.errors?.minlength"
+            >Название слишком короткое ({{
+              form.get(variable.name)?.errors?.minlength.actualLength
+            }}
+            /
+            {{ form.get(variable.name)?.errors?.minlength.requiredLength }}
+            символов)!</small
+          >
+          <small *ngIf="form.get(variable.name)?.errors?.maxlength"
+            >Название слишком длинное ({{
+              form.get(variable.name)?.errors?.maxlength.actualLength
+            }}
+            /
+            {{ form.get(variable.name)?.errors?.maxlength.requiredLength }}
+            символов)!</small
+          >
+        </div>
+      </div>
+      <div class="EnContainer" *ngIf="{ name: 'nameEn' } as variable">
+        <div class="LabelSmall">en</div>
+        <input class="TextInput" type="text" formControlName="nameEn" />
+        <div
+          class="Errors"
+          *ngIf="
+            form.get(variable.name)!.invalid && form.get(variable.name)!.touched
+          "
+        >
+          <small *ngIf="form.get(variable.name)?.errors?.required"
+            >Поле не может быть пустым!</small
+          >
+          <small *ngIf="form.get(variable.name)?.errors?.minlength"
+            >Название слишком короткое ({{
+              form.get(variable.name)?.errors?.minlength.actualLength
+            }}
+            /
+            {{ form.get(variable.name)?.errors?.minlength.requiredLength }}
+            символов)!</small
+          >
+          <small *ngIf="form.get(variable.name)?.errors?.maxlength"
+            >Название слишком длинное ({{
+              form.get(variable.name)?.errors?.maxlength.actualLength
+            }}
+            /
+            {{ form.get(variable.name)?.errors?.maxlength.requiredLength }}
+            символов)!</small
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="Control">
+    <div class="Label">Приоритет в списке</div>
+    <input class="NumberInput" type="number" formControlName="order_number" />
+  </div>
+  <div class="Control">
+    <div class="Label">Блокировка</div>
+    <input class="CheckInput" type="checkbox" formControlName="is_blocked" />
+  </div>
+  <div class="Control">
+    <div class="Label">Видимость</div>
+    <input class="CheckInput" type="checkbox" formControlName="is_visible" />
+  </div>
+  <button
+    *ngIf="SelectedElem === undefined"
+    class="button"
+    type="submit"
+    mat-raised-button
+    [disabled]="form.invalid"
+  >
+    Добавить
+  </button>
+  <button
+    *ngIf="SelectedElem !== undefined"
+    class="button"
+    type="submit"
+    mat-raised-button
+    [disabled]="form.invalid"
+  >
+    Изменить
+  </button>
+</form>

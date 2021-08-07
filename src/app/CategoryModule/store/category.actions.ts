@@ -23,3 +23,13 @@ export const CategoryClickedAction = createAction(
   '[CATEGORIES] CategoryClickedAction',
   props<{ data: CategoryStore | undefined }>()
 );
+
+export const CategoryAddRequestAction = createAction(
+  '[CATEGORIES] CategoryAddRequestAction',
+  props<{ data: CategoryServer }>()
+);
+
+export const CategoryAddedAction = createAction(
+  '[CATEGORIES] CategoryAddedAction',
+  props<{ data: CategoryStore }>()
+);
